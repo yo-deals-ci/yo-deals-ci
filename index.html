@@ -308,6 +308,71 @@
   @media (prefers-reduced-motion:reduce){
     .manifest{animation:none;opacity:1;transform:rotate(-1.2deg);}
   }
+  /* ---------- Panier ---------- */
+  .cart-btn{
+    position:relative;background:none;border:1px solid var(--line);
+    padding:9px 12px;border-radius:var(--radius);cursor:pointer;
+    display:flex;align-items:center;color:var(--ink);
+  }
+  .cart-btn svg{width:20px;height:20px;}
+  .cart-badge{
+    position:absolute;top:-7px;right:-7px;
+    background:var(--terracotta);color:#fff;
+    font-size:11px;font-weight:600;
+    width:18px;height:18px;border-radius:50%;
+    display:none;align-items:center;justify-content:center;
+  }
+  .cart-panel{
+    position:fixed;top:0;right:-360px;width:340px;height:100%;
+    background:var(--bg);border-left:1px solid var(--line);
+    box-shadow:-8px 0 24px rgba(0,0,0,0.08);
+    z-index:100;transition:right .25s ease;
+    display:flex;flex-direction:column;padding:22px;
+  }
+  .cart-panel.open{right:0;}
+  .cart-panel-head{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:20px;
+  }
+  .cart-panel-head h3{font-size:18px;}
+  .cart-close{background:none;border:0;cursor:pointer;font-size:20px;color:var(--ink-soft);}
+  .cart-items{flex:1;overflow-y:auto;}
+  .cart-item{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;gap:10px;
+  }
+  .cart-item em{display:block;font-style:normal;color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+  .cart-item button{
+    background:none;border:0;color:var(--ink-soft);font-size:20px;
+    cursor:pointer;line-height:1;flex:none;
+  }
+  .cart-item button:hover{color:var(--terracotta);}
+  .cart-empty{color:var(--ink-soft);font-size:14px;padding:20px 0;}
+  .cart-order-btn{
+    display:none;align-items:center;justify-content:center;gap:8px;
+    background:var(--green);color:#fff;border:0;
+    padding:14px;font-size:15px;font-weight:500;
+    border-radius:var(--radius);cursor:pointer;margin-top:16px;width:100%;
+  }
+  .cart-order-btn:hover{background:var(--ink);}
+  .cart-overlay{
+    position:fixed;inset:0;background:rgba(28,35,51,0.35);
+    z-index:90;opacity:0;pointer-events:none;transition:opacity .25s ease;
+  }
+  .cart-panel.open ~ .cart-overlay{opacity:1;pointer-events:auto;}
+
+  .ticket-cart-row{padding:0 22px 18px;}
+  .add-cart-btn{
+    width:100%;padding:10px;font-size:13.5px;font-weight:500;
+    background:var(--ink);color:var(--bg);border:0;border-radius:var(--radius);
+    cursor:pointer;
+  }
+  .add-cart-btn:hover{background:var(--green);}
+
+  @media (max-width:480px){
+    .cart-panel{width:100%;right:-100%;}
+  }
+
 </style>
 </head>
 <body>
@@ -322,6 +387,10 @@
       <a href="#contact">Contact</a>
     </nav>
     <div style="display:flex;align-items:center;gap:14px;">
+      <button class="cart-btn" id="cartBtn" aria-label="Voir le panier">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        <span class="cart-badge" id="cartCount">0</span>
+      </button>
       <a class="nav-cta" href="https://wa.me/2250507119237?text=Bonjour%20Yo%20Deals%20CI%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener">Commander sur WhatsApp</a>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -329,6 +398,19 @@
     </div>
   </div>
 </header>
+
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-panel-head">
+    <h3>Votre sélection</h3>
+    <button class="cart-close" id="cartCloseBtn" aria-label="Fermer">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <p class="cart-empty" id="cartEmpty">Aucun article sélectionné pour l'instant.</p>
+  <button class="cart-order-btn" id="cartOrderBtn">
+    Commander sur WhatsApp
+  </button>
+</div>
+<div class="cart-overlay" id="cartOverlay"></div>
 
 <main id="top">
 
@@ -618,6 +700,84 @@ const navToggle = document.getElementById('navToggle');
       });
     });
   });
+
+  /* ---------- Panier ---------- */
+  const WHATSAPP_NUMBER = '2250507119237';
+  const cart = [];
+
+  const cartBtn = document.getElementById('cartBtn');
+  const cartCount = document.getElementById('cartCount');
+  const cartPanel = document.getElementById('cartPanel');
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartEmptyEl = document.getElementById('cartEmpty');
+  const cartOrderBtn = document.getElementById('cartOrderBtn');
+  const cartCloseBtn = document.getElementById('cartCloseBtn');
+
+  function renderCart() {
+    cartCount.textContent = cart.length;
+    cartCount.style.display = cart.length ? 'flex' : 'none';
+    cartItemsEl.innerHTML = '';
+    if (cart.length === 0) {
+      cartEmptyEl.style.display = 'block';
+      cartOrderBtn.style.display = 'none';
+    } else {
+      cartEmptyEl.style.display = 'none';
+      cartOrderBtn.style.display = 'flex';
+      cart.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML = `<span>${item.name} <em>${item.price}</em></span><button aria-label="Retirer" data-idx="${idx}">&times;</button>`;
+        cartItemsEl.appendChild(row);
+      });
+    }
+  }
+
+  cartItemsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-idx]');
+    if (btn) {
+      cart.splice(Number(btn.dataset.idx), 1);
+      renderCart();
+    }
+  });
+
+  cartBtn.addEventListener('click', () => cartPanel.classList.toggle('open'));
+  cartCloseBtn.addEventListener('click', () => cartPanel.classList.remove('open'));
+  document.getElementById('cartOverlay').addEventListener('click', () => cartPanel.classList.remove('open'));
+
+  cartOrderBtn.addEventListener('click', () => {
+    let msg = 'Bonjour, je souhaite commander :\n';
+    cart.forEach(item => { msg += `- ${item.name} (${item.price})\n`; });
+    msg += '\nMerci de me confirmer la disponibilité.';
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  });
+
+  // Ajoute automatiquement un bouton "Ajouter au panier" sur les fiches marquées "disponible"
+  tickets.forEach(ticket => {
+    const tag = ticket.querySelector('.ticket-tag');
+    if (tag && tag.textContent.trim() === 'disponible') {
+      const nameEl = ticket.querySelector('h3');
+      const name = nameEl ? nameEl.textContent.trim() : 'Produit';
+      const priceBoldEls = ticket.querySelectorAll('.ticket-price b');
+      const price = priceBoldEls.length ? priceBoldEls[priceBoldEls.length - 1].textContent.trim() : '';
+
+      const row = document.createElement('div');
+      row.className = 'ticket-cart-row';
+      const addBtn = document.createElement('button');
+      addBtn.className = 'add-cart-btn';
+      addBtn.textContent = 'Ajouter au panier';
+      addBtn.addEventListener('click', () => {
+        cart.push({ name, price });
+        renderCart();
+        cartPanel.classList.add('open');
+      });
+      row.appendChild(addBtn);
+      ticket.appendChild(row);
+    }
+  });
+
+  renderCart();
+
 </script>
 
 </body>
