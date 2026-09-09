@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yo Deals CI — Import & vente en ligne, Abidjan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">Yo Deals<span>CI</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#catalogue">Catalogue</a>
+      <a href="#comment-ca-marche">Comment ça marche</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <a class="nav-cta" href="https://wa.me/2250507119237?text=Bonjour%20Yo%20Deals%20CI%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow-line"><span class="dot"></span> Import Chine → Abidjan, depuis 2023</div>
+      <h1 class="headline">Des produits importés, <em>livrés près de chez vous</em>.</h1>
+      <p class="lede">Yo Deals CI sélectionne, importe et livre des produits électroniques et des véhicules d'occasion à Abidjan et dans plusieurs villes de Côte d'Ivoire — avec un interlocuteur unique du choix à la livraison.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#catalogue">Voir le catalogue</a>
+        <a class="btn btn-ghost" href="#contact">Nous contacter</a>
+      </div>
+    </div>
+
+    <div class="manifest">
+      <div class="manifest-row">
+        <span>Bordereau nº 003</span>
+        <span>Yo Deals CI</span>
+      </div>
+      <div class="manifest-title">Suivi d'opération</div>
+      <div class="manifest-path">
+        Chine
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        Abidjan
+      </div>
+      <div class="manifest-sub">Sourcing, transport et revente pilotés de bout en bout</div>
+      <div class="manifest-stats">
+        <div class="manifest-stat"><b>245 %</b><span>ROI moyen / opération</span></div>
+        <div class="manifest-stat"><b>3 pays</b><span>Burkina Faso, Sénégal, Mali</span></div>
+      </div>
+      <div class="stamp">CLIENT<br>VÉRIFIÉ</div>
+    </div>
+  </div>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="wrap stats-grid">
+      <div class="stat"><b>780 000 FCFA</b><span>de chiffre d'affaires généré sur une opération d'import</span></div>
+      <div class="stat"><b>Abidjan +</b><span>clients servis dans plusieurs villes de l'intérieur du pays</span></div>
+      <div class="stat"><b>3 ans</b><span>d'activité d'import-revente en ligne, 2023 à aujourd'hui</span></div>
+    </div>
+  </div>
+
+  <!-- CATALOGUE -->
+  <section class="wrap" id="catalogue">
+    <div class="section-head">
+      <h2>Deux familles de produits, une seule promesse : la fiabilité.</h2>
+      <p>Une sélection d'exemples de notre catalogue. La disponibilité réelle est confirmée sur WhatsApp au moment de la commande.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-filter="all">Tout</button>
+      <button class="tab" data-filter="electronique">Électronique</button>
+      <button class="tab" data-filter="maison">Maison</button>
+      <button class="tab" data-filter="vehicules">Véhicules</button>
+    </div>
+
+    <div class="catalogue-grid" id="catalogueGrid">
+      <div class="ticket" data-cat="electronique">
+        <div class="ticket-media"><img src="images/chargeur-ultra-rapide.jpg" alt="Chargeur ultra rapide iPhone & Samsung" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 001 — Électronique</span>
+          <h3>Chargeur ultra rapide iPhone & Samsung</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>1 500 FCFA</b></div>
+          <span class="ticket-tag">disponible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="electronique">
+        <div class="ticket-media"><img src="images/protege-ecran-anti-choc.jpg" alt="Protège-écran anti-choc, coloris lumineux" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 002 — Électronique</span>
+          <h3>Protège-écran anti-choc, coloris lumineux</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>1 000 FCFA</b></div>
+          <span class="ticket-tag">disponible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="electronique">
+        <div class="ticket-media"><img src="images/kit-bracelets-watch-ultra.jpg" alt="Kit bracelets Watch Ultra, 7 en 1" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 003 — Électronique</span>
+          <h3>Kit bracelets Watch Ultra, 7 en 1</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>20 000 FCFA</b></div>
+          <span class="ticket-tag">disponible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="electronique">
+        <div class="ticket-media"><img src="images/montre-i60-watch-ultra2.jpg" alt="Montre connectée i60 Watch Ultra 2, 12 en 1" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 004 — Électronique</span>
+          <h3>Montre connectée i60 Watch Ultra 2, 12 en 1</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>35 000 FCFA</b></div>
+          <span class="ticket-tag">disponible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="maison">
+        <div class="ticket-media"><img src="images/rechaud-double-feux-raf.jpg" alt="Réchaud électrique double feux RAF, 2000 W" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 005 — Maison</span>
+          <h3>Réchaud électrique double feux RAF, 2000 W</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>15 000 FCFA</b></div>
+          <span class="ticket-tag">disponible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="maison">
+        <div class="ticket-media"><img src="images/rechaud-simple-feu-raf.jpg" alt="Réchaud électrique simple feu RAF, 1000 W" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 006 — Maison</span>
+          <h3>Réchaud électrique simple feu RAF, 1000 W</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>10 000 FCFA</b></div>
+          <span class="ticket-tag">disponible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="maison">
+        <div class="ticket-media"><img src="images/hachoir-decoupeur-legumes.jpg" alt="Hachoir-découpeur de légumes multifonction" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 007 — Maison</span>
+          <h3>Hachoir-découpeur de légumes multifonction</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>9 000 FCFA</b></div>
+          <span class="ticket-tag">disponible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="vehicules">
+        <div class="ticket-media"><img src="images/jeep-wrangler-sahara.jpg" alt="Jeep Wrangler Unlimited Sahara, 6 cylindres" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 008 — Véhicules</span>
+          <h3>Jeep Wrangler Unlimited Sahara, 6 cylindres</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>45 000 000 FCFA</b></div>
+          <span class="ticket-tag">visite possible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="vehicules">
+        <div class="ticket-media"><img src="images/toyota-chr-hybride.jpg" alt="Toyota C-HR Hybride" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 009 — Véhicules</span>
+          <h3>Toyota C-HR Hybride</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>8 500 000 FCFA</b></div>
+          <span class="ticket-tag">visite possible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="vehicules">
+        <div class="ticket-media"><img src="images/peugeot-3008.jpg" alt="Peugeot 3008" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 010 — Véhicules</span>
+          <h3>Peugeot 3008</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>12 500 000 FCFA</b></div>
+          <span class="ticket-tag">visite possible</span>
+        </div>
+      </div>
+
+      <div class="ticket" data-cat="vehicules">
+        <div class="ticket-media"><img src="images/hyundai-elantra.jpg" alt="Hyundai Elantra" loading="lazy"></div>
+        <div class="ticket-top">
+          <span class="lot">Lot 011 — Véhicules</span>
+          <h3>Hyundai Elantra</h3>
+        </div>
+        <div class="ticket-perf">
+          <div class="ticket-price"><b>7 500 000 FCFA</b></div>
+          <span class="ticket-tag">visite possible</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="comment-ca-marche" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Commander en trois étapes</h2>
+        <p>De la sélection à la livraison, un seul interlocuteur suit votre commande.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>Choisissez sur WhatsApp ou Facebook</h3>
+          <p>Parcourez le catalogue et confirmez la disponibilité du produit avec notre équipe.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>Confirmez et réglez</h3>
+          <p>Le prix et le délai sont fixés avant tout paiement, sans surprise à la livraison.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>Recevez à Abidjan ou en région</h3>
+          <p>Livraison suivie jusqu'à Abidjan ou vers les villes de l'intérieur du pays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT FOUNDER -->
+  <section class="wrap" id="a-propos">
+    <div class="about">
+      <div>
+        <div class="avatar"><img src="images/donatien-kakou.jpg" alt="Donatien Kakou, fondateur de Yo Deals CI"></div>
+        <div class="badges">
+          <span class="badge">BTS Informatique — CEFIAT</span>
+          <span class="badge">Certificat Data Analyst — Trace Academia</span>
+          <span class="badge">Ex-Sewe Sport San-Pedro</span>
+        </div>
+      </div>
+      <div>
+        <h2>Le profil derrière Yo Deals CI</h2>
+        <p><strong>Donatien Kakou</strong> a fondé Yo Deals CI en 2023 pour connecter les marchés d'import en Chine aux acheteurs de Côte d'Ivoire — d'abord par une page commerciale, puis en structurant tout le parcours : sourcing, logistique, relation client et développement du portefeuille à Abidjan et à l'intérieur du pays.</p>
+        <p>Formé au développement informatique (BTS CEFIAT) et à l'analyse de données (certificat Trace Academia), il a conçu ce site pour donner à Yo Deals CI une vitrine à la hauteur de son activité — et pour continuer à développer des outils web au service du commerce en ligne.</p>
+        <p>Des déplacements réguliers au Burkina Faso, au Sénégal et au Mali nourrissent une bonne connaissance des marchés régionaux et des dynamiques d'import-revente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Une idée de commande ? Parlons-en directement.</h2>
+        <p>Réponse rapide sur WhatsApp aux heures ouvrées. Pour les véhicules, une visite peut être organisée à Abidjan.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="https://wa.me/2250507119237?text=Bonjour%20Yo%20Deals%20CI%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+          <a class="btn btn-ghost" href="tel:+2250749540267">Appeler le 07 49 54 02 67</a>
+          <a class="btn btn-ghost" href="mailto:donatienkakou11@gmail.com">Écrire un e-mail</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-row"><span>Téléphone</span><span>07 49 54 02 67</span></div>
+        <div class="contact-row"><span>Téléphone 2</span><span>05 07 11 92 37</span></div>
+        <div class="contact-row"><span>E-mail</span><span>donatienkakou11@gmail.com</span></div>
+        <div class="contact-row"><span>Localisation</span><span>Abidjan, Cocody</span></div>
+        <div class="contact-row"><span>Facebook</span><span>Yo Deals CI</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Yo Deals CI — Import & vente en ligne, Abidjan.</span>
+  <span>Site conçu par Donatien Kakou.</span>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
